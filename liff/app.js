@@ -3,13 +3,16 @@
  * Module dependencies.
  */
 
-var express = require('express'),
+var databaseUrl = "liffDB",
+	collections = ['places','books'],
+	express = require('express'),
 	routes = require('./routes'),
 	place = require('./routes/place'),
 	style = require('./routes/style'),
 	http = require('http'),
 	path = require('path'),
-	app = express();
+	app = express(),
+	db = require('mongojs').connect(databaseUrl, collections);
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -31,7 +34,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/style', style.style);
-app.get('/place/:place', place.place);
+app.get('/place/:place', place.place(db));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
