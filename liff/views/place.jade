@@ -1,5 +1,7 @@
 extends layout
 
 block content
-  h1= title
-  p= place
+  h1= place.title
+  span (#{place.lexicalCategories[0]})
+  p= place.definition
+  address Lat: #{place.lat} - Lng: #{place.lng}
