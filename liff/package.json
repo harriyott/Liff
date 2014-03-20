@@ -9,5 +9,9 @@
     "express": "3.4.8",
     "jade": "*",
     "stylus": "*"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-stylus": "~0.13.2"
   }
 }

@@ -1,21 +1,2 @@
-body {
-  padding: 50px;
-  font: 16px 'Droid Serif', Arial, sans-serif;
-  color: #333;
-  background: #fff;
-}
-.entry-title {
-  margin: 0 0 20px;
-}
-#theLibrary {
-  text-align: left;
-  margin-left: auto;
-  margin-right: auto;
-  background: #fff;
-}
-.element-group-title {
-  border-top: solid 1px;
-  border-bottom: solid 1px;
-  padding: 20px 0;
-  margin: 0;
-}
+/*! application-name 2014-03-20 */
+body{padding:50px;font:16px 'Droid Serif',Arial,sans-serif;color:#333;background:#f1f1f1}.entry-title{margin:0 0 20px}#theLibrary{text-align:left;margin-left:auto;margin-right:auto;background:#fff}.element-group-title{border-top:solid 1px;border-bottom:solid 1px;padding:20px 0;margin:0}
