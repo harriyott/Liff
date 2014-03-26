@@ -16,10 +16,27 @@ module.exports = function(grunt) {
         }]
       }
     },
+    jshint: {
+      files: ['Gruntfile.js', 'liff/**/*.js'],
+      options: {
+        globals: {
+          jQuery: true,
+          console: true,
+          module: true,
+          document: true
+        }
+      }
+    },
+    watch: {
+      files: ['<%= jshint.files %>'],
+      tasks: ['stylus', 'jshint']
+    }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-stylus');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  grunt.registerTask('default', ['stylus']);
+  grunt.registerTask('default', ['watch']);
 
 };
