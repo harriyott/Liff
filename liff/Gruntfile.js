@@ -27,16 +27,25 @@ module.exports = function(grunt) {
         }
       }
     },
+    express: {
+      default_option: {
+        serverreload: true
+      }
+    },
     watch: {
       files: ['<%= jshint.files %>'],
-      tasks: ['stylus', 'jshint']
+      tasks: ['stylus', 'jshint'],
+      options: {
+        spawn: false,
+      },
     }
   });
 
+  grunt.loadNpmTasks('grunt-express');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  grunt.registerTask('default', ['watch']);
+  grunt.registerTask('default', ['express', 'watch']);
 
 };
