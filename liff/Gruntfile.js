@@ -27,25 +27,61 @@ module.exports = function(grunt) {
         }
       }
     },
+    qunit: {
+      options: {
+        urls: [
+          'http://127.0.0.1:3000/tests/test.html',
+        ]
+      }
+    },
     express: {
-      default_option: {
-        serverreload: true
+      dev: {
+        options: {
+          script: 'app.js'
+        }
+      },
+      background: {
+        options: {
+          script: 'app.js',
+          background: false
+        }
       }
     },
     watch: {
-      files: ['<%= jshint.files %>'],
-      tasks: ['stylus', 'jshint'],
-      options: {
-        spawn: false,
+      js: {
+        files: ['<%= jshint.files %>'],
+        tasks: ['jshint'],
+        options: {
+          spawn: false,
+        }
       },
+      css: {
+        files: ['**/*.styl'],
+        tasks: ['stylus'],
+        options: {
+          spawn: false,
+        }
+      }
+    },
+    gitcommit: {
+      task: {
+        options: {
+         message: '<%= grunt.template.today("yyyy-mm-dd") %> - Grunt build commit',
+         directory: '../'
+        }
+      }
     }
   });
 
-  grunt.loadNpmTasks('grunt-express');
+  grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-qunit');
+  grunt.loadNpmTasks('grunt-git');
 
-  grunt.registerTask('default', ['express', 'watch']);
+  grunt.registerTask('sync', ['express:dev', 'watch']);
+  grunt.registerTask('default', ['express:dev', 'watch']);
+  grunt.registerTask('build', ['qunit','jshint','stylus','gitcommit']);
 
 };
