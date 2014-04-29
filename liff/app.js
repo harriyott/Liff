@@ -4,7 +4,7 @@
  */
 
 var databaseUrl = "liffDB",
-	collections = ['places','books'],
+	collections = ['places', 'books'],
 	express = require('express'),
 	routes = require('./routes'),
 	place = require('./routes/place'),
@@ -29,31 +29,30 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+    app.use(express.errorHandler());
 }
 
 app.get('/', routes.index);
 app.get('/style', style.style);
 app.get('/place/:place', place.place(db));
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+http.createServer(app).listen(app.get('port'), function () {
+    console.log('Express server listening on port ' + app.get('port'));
 });
 
 
 var fs = require('fs');
 var file = '../data/data.js';
- 
+
 fs.readFile(file, 'utf8', function (err, data) {
-  if (err) {
-    console.log('Error: ' + err);
-    return;
-  }
- 
-  data = JSON.parse(data);
- 
-  console.dir(data);
+    if (err) {
+        console.log('Error: ' + err);
+        return;
+    }
 
-  
+    data = JSON.parse(data);
 
+    console.log(db.places.findOne({ 'slug': data[0].slug }));
+    var place = db.places.find({ 'slug': data[0].slug });
+    //db.collection('places').save(data[0]);
 });
