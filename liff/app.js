@@ -44,15 +44,20 @@ http.createServer(app).listen(app.get('port'), function () {
 var fs = require('fs');
 var file = '../data/data.js';
 
-fs.readFile(file, 'utf8', function (err, data) {
-    if (err) {
+fs.readFile(file, 'utf8', function (errRead, data) {
+    if (errRead) {
         console.log('Error: ' + err);
         return;
     }
 
     data = JSON.parse(data);
 
-    console.log(db.places.findOne({ 'slug': data[0].slug }));
-    var place = db.places.find({ 'slug': data[0].slug });
-    //db.collection('places').save(data[0]);
+    for (var i = 0; i < data.length; i++) {
+        db.places.findAndModify({
+            query: { slug: data[i].slug },
+            update: { $set: data[i] },
+            new: true,
+            upsert: true
+        });
+    }
 });
