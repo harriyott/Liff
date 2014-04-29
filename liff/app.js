@@ -40,5 +40,20 @@ http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-var fileJSON = require('./data/import.json');
-console.log( JSON.parse( fileJSON ) );
+
+var fs = require('fs');
+var file = '../data/data.js';
+ 
+fs.readFile(file, 'utf8', function (err, data) {
+  if (err) {
+    console.log('Error: ' + err);
+    return;
+  }
+ 
+  data = JSON.parse(data);
+ 
+  console.dir(data);
+
+  
+
+});

@@ -3298,4 +3298,4 @@
   "definition": "(Skiing term.) To ski with 'zeal monachorum' is to descend the top three quarters of the mountain in a quivering blue funk, but on arriving at the gentle bit just in front of the restaurant to whizz to a stop like a victorious slalom-champion.",
   "slug" : "zealmonachorum"
 }
-];
+]
