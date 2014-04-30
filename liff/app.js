@@ -45,6 +45,7 @@ var fs = require('fs');
 var file = '../data/data.js';
 
 fs.readFile(file, 'utf8', function (errRead, data) {
+
     if (errRead) {
         console.log('Error: ' + err);
         return;
@@ -52,12 +53,25 @@ fs.readFile(file, 'utf8', function (errRead, data) {
 
     data = JSON.parse(data);
 
-    for (var i = 0; i < data.length; i++) {
-        db.places.findAndModify({
-            query: { slug: data[i].slug },
-            update: { $set: data[i] },
-            new: true,
-            upsert: true
-        });
-    }
+    data.forEach(function(entry) {
+        
+        db.places.findOne({slug: entry.slug}, function (err, place) {
+            if ( ! place ) {
+                db.places.findAndModify({
+                    query: { slug: entry.slug },
+                    update: { $set: entry },
+                    new: true,
+                    upsert: true
+                }, function (error, insertedPlace) {
+                    if ( ! error ) {
+                        console.log('Added: ' + insertedPlace.slug);
+                    } else {
+                        console.log('Error: ' + error);
+                    }
+                });
+            } else {
+                console.log('Breaking on: ' + place.slug);
+            }
+        });   
+    });
 });
