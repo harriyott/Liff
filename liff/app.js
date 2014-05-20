@@ -4,15 +4,15 @@
  */
 
 var databaseUrl = "liffDB",
-	collections = ['places', 'books'],
-	express = require('express'),
-	routes = require('./routes'),
-	place = require('./routes/place'),
-	style = require('./routes/style'),
-	http = require('http'),
-	path = require('path'),
-	app = express(),
-	db = require('mongojs').connect(databaseUrl, collections);
+    collections = ['places', 'books'],
+    express = require('express'),
+    routes = require('./routes'),
+    place = require('./routes/place'),
+    style = require('./routes/style'),
+    http = require('http'),
+    path = require('path'),
+    app = express(),
+    db = require('mongojs').connect(databaseUrl, collections);
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -53,7 +53,7 @@ fs.readFile(file, 'utf8', function (errRead, data) {
 
     data = JSON.parse(data);
 
-    data.forEach(function(entry) {
+    data.every(function(entry) {
         
         db.places.findOne({slug: entry.slug}, function (err, place) {
             if ( ! place ) {
@@ -65,12 +65,14 @@ fs.readFile(file, 'utf8', function (errRead, data) {
                 }, function (error, insertedPlace) {
                     if ( ! error ) {
                         console.log('Added: ' + insertedPlace.slug);
+                        return true;
                     } else {
                         console.log('Error: ' + error);
+                        return false;
                     }
                 });
             } else {
-                console.log('Breaking on: ' + place.slug);
+                return false;
             }
         });   
     });
