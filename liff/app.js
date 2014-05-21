@@ -47,14 +47,13 @@ var file = '../data/data.js';
 fs.readFile(file, 'utf8', function (errRead, data) {
 
     if (errRead) {
-        console.log('Error: ' + err);
+        console.log('Error: ' + errRead);
         return;
     }
 
     data = JSON.parse(data);
 
     data.every(function(entry) {
-        
         db.places.findOne({slug: entry.slug}, function (err, place) {
             if ( ! place ) {
                 db.places.findAndModify({
