@@ -27,10 +27,16 @@ exports.place = function(db) {
     		place.lat = body.resourceSets[0].resources[0].point.coordinates[0];
       		place.lng = body.resourceSets[0].resources[0].point.coordinates[1];
 
+      		db.places.update({ "_id": place._id }, {$set: {"lat": place.lat, "lng": place.lng}});
+
       		res.render('place', { place : place });
 
       	});
 
+      } else {
+
+      	res.render('place', { place : place });
+      	
       }
       
     });

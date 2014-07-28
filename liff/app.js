@@ -55,7 +55,7 @@ fs.readFile(file, 'utf8', function (errRead, data) {
 
     data.every(function(entry) {
         db.places.findOne({slug: entry.slug}, function (err, place) {
-            if ( ! place ) {
+            if ( place.slug !== entry.slug ) {
                 db.places.findAndModify({
                     query: { slug: entry.slug },
                     update: { $set: entry },
@@ -70,8 +70,6 @@ fs.readFile(file, 'utf8', function (errRead, data) {
                         return false;
                     }
                 });
-            } else {
-                return false;
             }
         });   
     });
