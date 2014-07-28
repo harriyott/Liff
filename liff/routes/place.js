@@ -17,13 +17,22 @@ exports.place = function(db) {
       	request = require('request');
 
       	request(url, function(err, resp, body) {
-      		console.log(err);
-      		console.log(resp);
-      		console.log(body);
+
+      		if ( err !== null ) {
+      			return false;
+      		}
+
+      		body = JSON.parse(body)
+
+    		place.lat = body.resourceSets[0].resources[0].point.coordinates[0];
+      		place.lng = body.resourceSets[0].resources[0].point.coordinates[1];
+
+      		res.render('place', { place : place });
+
       	});
 
       }
-      res.render('place', { place : place });
+      
     });
   }
 };
