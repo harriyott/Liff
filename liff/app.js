@@ -53,7 +53,6 @@ fs.readFile(file, 'utf8', function ( errRead, data ) {
 
     data = JSON.parse(data);
 
-    //data.every( addPlaceToDB );
     addPlaceToDB(data, 0);
 });
 
@@ -81,39 +80,4 @@ function addPlaceToDB( entries, position ) {
         });
 
     }
-}
-
-
-function addPlace( newPlace ) {
-    //console.log( newPlace );
-    /*
-function addPlaceToDB( entry ) {
-
-    if ( ! entry || entry == undefined ) return false;
-
-    if ( entry.slug ) {
-        entry = entry.slug;
-    }
-
-    var foundPlace = db.places.findOne( { slug: entry }, function (err, place) {
-        return ( place !== undefined ) ? place : false;
-    });
-
-}
-
-    db.places.findAndModify({
-        query: { slug: newPlace.slug },
-        update: { $set: newPlace },
-        new: true,
-        upsert: true
-    }, function (error, insertedPlace) {
-        if ( ! error ) {
-            console.log('Added: ' + insertedPlace.slug);
-            return true;
-        } else {
-            console.log('Error: ' + error);
-            return false;
-        }
-    });
-    */
 }
