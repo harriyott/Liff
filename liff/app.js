@@ -44,33 +44,76 @@ http.createServer(app).listen(app.get('port'), function () {
 var fs = require('fs');
 var file = '../data/data.js';
 
-fs.readFile(file, 'utf8', function (errRead, data) {
+fs.readFile(file, 'utf8', function ( errRead, data ) {
 
-    if (errRead) {
+    if ( errRead ) {
         console.log('Error: ' + errRead);
         return;
     }
 
     data = JSON.parse(data);
 
-    data.every(function(entry) {
-        db.places.findOne({slug: entry.slug}, function (err, place) {
-            if ( place.slug !== entry.slug ) {
+    //data.every( addPlaceToDB );
+    addPlaceToDB(data, 0);
+});
+
+function addPlaceToDB( entries, position ) {
+
+    if ( position < entries.length ) {
+
+        var entry = entries[position];
+
+        db.places.findOne( { slug: entry.slug }, function ( err, place ) {
+        
+            if ( place === null && err === null ) {
+
+                console.log( "Adding " + entries[position].slug );
+
                 db.places.findAndModify({
-                    query: { slug: entry.slug },
-                    update: { $set: entry },
+                    query: { slug: entries[position].slug },
+                    update: { $set: entries[position] },
                     new: true,
                     upsert: true
-                }, function (error, insertedPlace) {
-                    if ( ! error ) {
-                        console.log('Added: ' + insertedPlace.slug);
-                        return true;
-                    } else {
-                        console.log('Error: ' + error);
-                        return false;
-                    }
-                });
+                }, addPlaceToDB(entries, position + 1));
+                
             }
-        });   
+
+        });
+
+    }
+}
+
+
+function addPlace( newPlace ) {
+    //console.log( newPlace );
+    /*
+function addPlaceToDB( entry ) {
+
+    if ( ! entry || entry == undefined ) return false;
+
+    if ( entry.slug ) {
+        entry = entry.slug;
+    }
+
+    var foundPlace = db.places.findOne( { slug: entry }, function (err, place) {
+        return ( place !== undefined ) ? place : false;
     });
-});
+
+}
+
+    db.places.findAndModify({
+        query: { slug: newPlace.slug },
+        update: { $set: newPlace },
+        new: true,
+        upsert: true
+    }, function (error, insertedPlace) {
+        if ( ! error ) {
+            console.log('Added: ' + insertedPlace.slug);
+            return true;
+        } else {
+            console.log('Error: ' + error);
+            return false;
+        }
+    });
+    */
+}
