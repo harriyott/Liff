@@ -4,5 +4,7 @@ function load_map() {
 		lat = mapElement.getAttribute('data-lat'),
 		lng = mapElement.getAttribute('data-lng'),
 		latlon = new mxn.LatLonPoint(lat, lng);
-	map.setCenterAndZoom(latlon, 10);
+
+	map.setCenterAndZoom(latlon, 13);
+	map.addSmallControls();
 }
