@@ -5,3 +5,13 @@ block content
   span (#{place.lexicalCategories[0]})
   p= place.definition
   address Lat: #{place.lat} - Lng: #{place.lng}
+  div#place-map(data-lat=place.lat, data-lng=place.lng)
+
+  script(type='text/javascript', src='http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.js')    
+  script(type='text/javascript', src='/js/mxn.js?(leaflet)')
+  script(type='text/javascript', src='/js/map.js')
+
+  script(type='text/javascript').
+    window.onload = function() {
+      load_map();
+    };
