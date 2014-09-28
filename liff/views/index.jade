@@ -1,5 +1,8 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  header.home-top
+    h1.entry-title= title
+    nav
+      a.search-link(href='#') Search
+      a.random-link(href='#') Random

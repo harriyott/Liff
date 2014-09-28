@@ -3,7 +3,8 @@ html
   head
     title= title
     link(rel='stylesheet', href='http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.css')
+    link(href='http://fonts.googleapis.com/css?family=Satisfy|Cinzel|Halant:400,500', rel='stylesheet')
     link(rel='stylesheet', href='/stylesheets/style.css')
-  body
+  body(class=bodyClass)
     section#wrapper!= body
         block content
