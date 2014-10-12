@@ -1,0 +1,7 @@
+each place, key in places
+  article.place-listing
+    h2.place-listing-title
+      a.place-listing-link(href='/place/#{place.slug}').
+        #{place.title}
+      span.place-listing-lexical= place.lexicalCategories[0]
+    p.place-listing-definition= place.definition

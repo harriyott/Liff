@@ -7,6 +7,7 @@ var databaseUrl = "liffDB",
     collections = ['places', 'books'],
     express = require('express'),
     routes = require('./routes'),
+    places = require('./routes/places'),
     place = require('./routes/place'),
     style = require('./routes/style'),
     http = require('http'),
@@ -33,6 +34,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/style', style.style);
+app.get('/place', places.places(db) );
 app.get('/place/:place', place.place(db));
 
 http.createServer(app).listen(app.get('port'), function () {

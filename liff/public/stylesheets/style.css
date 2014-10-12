@@ -1,5 +1,10 @@
 /*! liff 2014-10-12 */
 
+/**
+ * Liff - Styling
+ */
+/* Reset
+----------------------------*/
 blockquote, body, html, dl, dd, figure, img, p, ul, ol, li {
   padding: 0;
   margin: 0; }
@@ -27,22 +32,54 @@ ul, ol {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
+/* Variables
+----------------------------*/
+/* Global
+----------------------------*/
 body {
   background: #fff;
   color: #333;
-  font: 16px Halant,Georgia,serif; }
+  font: 16px Halant, Georgia, serif; }
 
 html {
   height: 100%; }
 
+.center {
+  text-align: center; }
+
+/* Text level typography
+----------------------------*/
 a {
   text-decoration: none;
   color: #8c8585; }
 
+/* Forms
+----------------------------*/
+form,
+input,
+select,
+textarea {
+  font: 16px Halant, Georgia, serif; }
+
+input:not([type='submit']),
+input:not([type='radio']),
+input:not([type='checkbox']),
+textarea,
+select {
+  line-height: 1;
+  background: #d8d8d8;
+  font-size: 2.4375em;
+  padding: 0.6rem 1rem;
+  border: 0.125rem solid #979797;
+  color: #9e9e9e;
+  width: 100%; }
+
+/* Home
+----------------------------*/
 body.home {
   min-height: 100%;
   max-height: 100%;
-  background: url(../img/l.png) center center/auto 90% no-repeat #6c6666;
+  background: url("../img/l.svg") center center/auto 90% no-repeat #6c6666;
   text-align: center;
   position: relative;
   color: #fff; }
@@ -61,12 +98,12 @@ body.home {
   background: #878686;
   content: '';
   height: 1px;
-  width: .8em;
-  left: -1.2em;
+  width: 1.3em;
+  left: -2.2em;
   top: .68em; }
 
 .home-top .entry-title:after {
-  right: -1.2em;
+  right: -2.2em;
   left: auto; }
 
 .home-top a {
@@ -80,15 +117,28 @@ body.home {
   transition: 300ms all;
   border-bottom: 1px solid transparent;
   display: inline-block;
-  margin: .3em 1em 0;
-  font: .5em Halant,sans-serif; }
+  margin: 0.3em 1em 0;
+  font: 0.5em Halant, sans-serif; }
 
 .home-top nav a:hover {
   border-bottom: 1px solid #8c8585; }
 
-.search-form {
-  max-width: 40rem;
+.home-search-form {
+  max-width: 32rem;
+  position: relative;
   margin: 0 auto; }
+  .home-search-form .search-text {
+    padding-right: 4rem; }
+  .home-search-form .search-submit {
+    background: url("../img/search.svg") no-repeat center #d8d8d8;
+    position: absolute;
+    padding: 0.5rem;
+    cursor: pointer;
+    height: 3.65rem;
+    border: 0;
+    width: 3.66rem;
+    right: 0.125rem;
+    top: 0.125rem; }
 
 @media screen and (min-width: 30em) {
   .home-top {
