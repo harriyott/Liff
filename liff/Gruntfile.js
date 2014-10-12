@@ -2,7 +2,7 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    stylus: {
+    sass: {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
@@ -10,7 +10,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: 'public/',
-          src: ['**/*.styl'],
+          src: ['**/*.scss'],
           dest: 'public/',
           ext: '.css'
         }]
@@ -56,8 +56,8 @@ module.exports = function(grunt) {
         }
       },
       css: {
-        files: ['**/*.styl'],
-        tasks: ['stylus'],
+        files: ['**/*.scss'],
+        tasks: ['sass'],
         options: {
           spawn: false,
         }
@@ -72,16 +72,16 @@ module.exports = function(grunt) {
       }
     }
   });
-
+  
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-git');
 
   grunt.registerTask('sync', ['express:dev', 'watch']);
   grunt.registerTask('default', ['express:dev', 'watch']);
-  grunt.registerTask('build', ['qunit','jshint','stylus','gitcommit']);
+  grunt.registerTask('build', ['qunit','jshint','sass','gitcommit']);
 
 };
