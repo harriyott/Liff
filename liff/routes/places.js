@@ -13,7 +13,7 @@ exports.places = function( db ) {
             if ( err !== null || items.length === 0 ) {
                 res.render('404');
             } else {
-                res.render('place-archive', { places: items } );
+                res.render('place-archive', { places: items } );;
             }
 
         });

@@ -1,11 +1,12 @@
 extends layout
 
 block content
-  h1= place.title
-  span (#{place.lexicalCategories[0]})
-  p= place.definition
-  address Lat: #{place.lat} - Lng: #{place.lng}
-  div#place-map(data-lat=place.lat, data-lng=place.lng)
+  include header.jade
+  div.place-container.wrapper.center
+    h1.place-title= place.title
+    span.place-lexical (#{place.lexicalCategories[0]})
+    p.place-definition= place.definition
+    div#place-map.place-map(data-lat=place.lat, data-lng=place.lng)
 
   script(type='text/javascript', src='http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.js')    
   script(type='text/javascript', src='/js/mxn.js?(leaflet)')

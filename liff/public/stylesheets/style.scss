@@ -21,6 +21,9 @@ $fontStack: 16px Halant, Georgia, serif;
 $inputBackground: #D8D8D8;
 $inputBorder: #979797;
 $inputColor: #9E9E9E;
+$topLink: #D0D0D0;
+$heading: #8C8585;
+$para: #979797;
 
 /* Global
 ----------------------------*/
@@ -39,8 +42,31 @@ html {
 	text-align: center;
 }
 
+.wrapper {
+	max-width: 62rem;
+	padding: 0 1rem;
+	margin: 0 auto;
+}
+
+.wrapper:before,
+.wrapper:after {
+	display: table;
+	content: " ";
+}
+
+.wrapper:after {
+	clear: left;
+}
+
 /* Text level typography
 ----------------------------*/
+
+p {
+	font-size: 1.5rem;
+	line-height: 1.3;
+	margin: 0 0 1rem;
+	color: #979797;
+}
 
 a {
 	text-decoration: none;
@@ -71,6 +97,114 @@ select {
 	width: 100%;
 }
 
+/* Header
+----------------------------*/
+
+.top {
+	background: url( '../img/l.svg' ) center center/auto 80% no-repeat #6c6666;
+	text-align: center;
+	position: relative;
+	padding: 1.5rem 0;
+	color: #fff;
+}
+
+.top .wrapper {
+	max-width: 42.5rem;
+	padding: 1.5rem 1rem;
+}
+
+.top form {
+	display: none;
+}
+
+.top-nav a {
+	font-size: 1.4em;
+	color: $topLink;
+}
+
+.top-nav a:first-child {
+	margin-right: 8rem
+}
+
+.site-title {
+	line-height: 1;
+	font-size: 3.45em;
+	position: relative;
+	display: inline-block;
+	margin: 0;
+	color: #fff;
+}
+
+.site-title:before,
+.site-title:after {
+	position: absolute;
+	background: #878686;
+	content: '';
+	height: 1px;
+	width: 1em;
+	left: -1.7em;
+	top: 0.48em;
+}
+
+.site-title:after {
+	right: -1.7em;
+	left: auto;
+}
+
+@media screen and ( min-width: 25em ) {
+
+	.top-navigation {
+		font-size: 1.3em;
+	}
+
+	.top-nav a:first-child {
+		margin-right: 12rem
+	}
+
+}
+
+@media screen and ( min-width: 30em ) {
+
+	.top-navigation {
+		font-size: 1.4em;
+	}
+
+}
+
+@media screen and ( min-width: 35em ) {
+
+	.top-navigation {
+		font-size: 1.6em;
+	}
+
+	.top-nav a:first-child {
+		margin-right: 15rem
+	}
+
+	.site-title:before {
+		width: 1.6em;
+		left: -2.2em;
+	}
+
+	.site-title:after {
+		width: 1.6em;
+		right: -2.2em;
+	}
+
+}
+
+@media screen and ( min-width: 40em ) {
+
+	.top-navigation {
+		font-size: 1.8em;
+	}
+
+	.top-nav a:first-child {
+		margin-right: 17.2rem
+	}
+
+}
+
 /* Home
 ----------------------------*/
 
@@ -83,56 +217,23 @@ body.home {
 	color: #fff;
 }
 
-.home-top {
-	font:2.25em Cinzel,serif;
+.home .top-navigation {
+	padding-top: 3rem;
 }
 
-.home-top .entry-title {
-	position: relative;
-	display: inline-block;
-	margin: 1.5em 0 0;
-}
+@media screen and ( min-width: 40em ) {
 
-.home-top .entry-title:before,
-.home-top .entry-title:after {
-	position: absolute;
-	background: #878686;
-	content: '';
-	height: 1px;
-	width: 1.3em;
-	left: -2.2em;
-	top: .68em;
-}
+	.home .top-navigation {
+		padding-top: 8rem;
+	}
 
-.home-top .entry-title:after {
-	right: -2.2em;
-	left: auto;
-}
-
-.home-top a {
-	color: #fff;
-}
-
-.home-top nav a {
-	-webkit-transition:300ms all;
-	   -moz-transition:300ms all;
-	    -ms-transition:300ms all;
-	     -o-transition:300ms all;
-	        transition:300ms all;
-	border-bottom: 1px solid transparent;
-	display: inline-block;
-	margin: 0.3em 1em 0;
-	font: 0.5em Halant, sans-serif;
-}
-
-.home-top nav a:hover {
-	border-bottom: 1px solid #8c8585;
 }
 
 .home-search-form {
 	max-width: 32rem;
 	position: relative;
 	margin: 0 auto;
+	display: none;
 
 	.search-text {
 		padding-right: 4rem;
@@ -152,31 +253,62 @@ body.home {
 
 }
 
-@media screen and ( min-width: 30em ) {
-	
-	.home-top {
-		font-size: 3em;
-	}
+/* Place
+----------------------------*/
 
+.place-container {
+	padding: 1.5rem 1rem;
+	max-width: 48rem;
 }
 
-@media screen and ( min-width: 40em ) {
-
-	.home-top {
-		font-size: 4em
-	}
-
+.place-title {
+	font-size: 2.8em;
+	margin: 0;
+	color: $heading;
 }
 
-@media screen and ( min-width: 50em ) {
-	
-	.home-top {
-		font-size: 5em
-	}
-
+.place-lexical {
+	font-size: 1.375em;
+	display: block;
+	margin: 0 0 2rem;
+	color: $topLink;
 }
 
-#place-map {
-	height: 400px;
-	width: 400px;
+.place-definition {
+	margin: 0 0 2.5rem;
 }
+
+.place-map {
+	margin: 0 0 2rem;
+	height: 0;
+	width: 100%;
+	padding-bottom: 45%;
+	position: relative;
+}
+
+.place-map:after {
+	content: "";
+	background: #D0D0D0;
+	opacity: 0.4;
+	position: absolute;
+	z-index: 6;
+	height: 120%;
+	width: 100%;
+	left: 0;
+	top: 0;
+}
+
+/* Utility
+----------------------------*/
+
+.clear:before,
+.clear:after {
+	display: table;
+	content: " ";
+}
+
+.clear:after {
+	clear: both;
+}
+
+

@@ -1,7 +1,14 @@
-each place, key in places
-  article.place-listing
-    h2.place-listing-title
-      a.place-listing-link(href='/place/#{place.slug}').
-        #{place.title}
-      span.place-listing-lexical= place.lexicalCategories[0]
-    p.place-listing-definition= place.definition
+extends layout
+
+block content
+  include header.jade
+  div.place-list-container.wrapper
+    h1.entry-title Page title
+    div.place-list
+    each place, key in places
+      article.place-listing
+        h2.place-listing-title
+          a.place-listing-link(href='/place/#{place.slug}').
+            #{place.title}
+          span.place-listing-lexical= place.lexicalCategories[0]
+        p.place-listing-definition= place.definition
